@@ -55,6 +55,8 @@ module Rack
                                         'Location'     => url.to_s)
 
         [status, headers, []]
+      rescue URI::InvalidURIError
+        [400, {"Content-Type" => "text/plain"}, []]
       end
 
       # http://tools.ietf.org/html/draft-hodges-strict-transport-sec-02
